@@ -1,0 +1,9 @@
+from yaml.scanner import ScannerError
+
+
+class YamlFormatFileError(ScannerError): ...
+
+class EmptyFileError(Exception): ...
+
+class SyntaxValidationError(Exception): ...
+
