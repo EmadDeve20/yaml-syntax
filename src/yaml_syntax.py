@@ -23,10 +23,10 @@ class YamlSyntax:
     handle syntax of yaml file
 
     Raises:
-        YamlFormatFileError: format file error if load file or input text is not a yaml format
-        SyntaxValidationError: when loaded yaml file does not match with syntax_schema
-        EmptyFileError: when input file is empty
-        NotSerializable: when loaded yaml file is not dict like. we need make dict to make serialized_data 
+        YamlFormatFileError: format file error if the load file or input text is not in YAML format.
+        SyntaxValidationError: When the syntax of a loaded YAML file does not match the syntax schema.
+        EmptyFileError: When the input file is empty.
+        NotSerializable: When a loaded YAML file is not dict-like. We need to make a dict to make serialized data. 
     """
 
     serialized_data:BaseModel|None = None
@@ -42,8 +42,8 @@ class YamlSyntax:
             syntax_schema (BaseModel): syntax schema
             yaml_text (str | bytes): text of yaml file
             yaml_syntax_error_handler (_type_, optional): function to handle message of syntax error. Defaults to None.
-            raise_syntax_validation_error (bool, optional): raise SyntaxValidationError if yaml file has syntax error.
-            otherwise, will print error message and exit with code 1. Defaults to False.
+            raise_syntax_validation_error (bool, optional): Raise a SyntaValidationError if the YAML file has a syntax error.
+            Otherwise, it will print an error message and exit with code 1. Defaults to False.
 
 
         Raises:
@@ -76,7 +76,7 @@ class YamlSyntax:
             loaded_yaml (dict): loaded yaml file
 
         Raises:
-            SyntaxValidationError: error if syntax not valid
+            SyntaxValidationError: When the syntax of a loaded YAML file does not match the syntax schema
             ex: any exceptions
         """
 
@@ -123,8 +123,8 @@ class YamlSyntax:
             syntax_schema (BaseModel): syntax schema
             yaml_file (str): file name or file path
             yaml_syntax_error_handler (_type_, optional): function to handle message of syntax error. Defaults to None.
-            raise_syntax_validation_error (bool, optional): raise SyntaxValidationError if yaml file has syntax error.
-            otherwise, will print error message and exit with code 1. Defaults to False.
+            raise_syntax_validation_error (bool, optional): Raise a SyntaValidationError if the YAML file has a syntax error.
+            Otherwise, it will print an error message and exit with code 1. Defaults to False.
 
         Returns:
             YamlSyntax
