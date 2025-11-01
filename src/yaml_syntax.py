@@ -1,5 +1,5 @@
 import yaml
-import os
+import sys
 
 from yaml.scanner import ScannerError
 
@@ -8,7 +8,8 @@ from pydantic import BaseModel, ValidationError
 from .exceptions import (
     YamlFormatFileError,
     EmptyFileError,
-    SyntaxValidationError
+    SyntaxValidationError,
+    NotSerializable
 )
 
 
@@ -22,10 +23,10 @@ class YamlSyntax:
     handle syntax of yaml file
 
     Raises:
-        YamlFormatFileError: format file error if load file or input text is not a yaml format/
+        YamlFormatFileError: format file error if load file or input text is not a yaml format
         SyntaxValidationError: when loaded yaml file does not match with syntax_schema
         EmptyFileError: when input file is empty
-        ValueError: when loaded yaml file is not dict like. we need make dict to make serialized_data 
+        NotSerializable: when loaded yaml file is not dict like. we need make dict to make serialized_data 
     """
 
     serialized_data:BaseModel|None = None
@@ -85,7 +86,7 @@ class YamlSyntax:
         except ValidationError as validation_error:
             if not self.raise_syntax_validation_error:
                 print(self.yaml_syntax_error_handler(validation_error))
-                os._exit(1)
+                sys.exit(1)
             else:
                 raise SyntaxValidationError(self.yaml_syntax_error_handler(validation_error))
         except Exception as ex:
@@ -101,14 +102,14 @@ class YamlSyntax:
 
         Raises:
             EmptyFileError: when file is empty
-            ValueError: if loaded_yaml file is str
+            NotSerializable: if loaded_yaml file is str or anything exclude dict
         """
 
         if loaded_yaml is None:
             raise EmptyFileError("file is empty!")
 
         if isinstance(loaded_yaml, str):
-            raise ValueError("yaml file must make dict as first not str.")
+            raise NotSerializable("yaml file must make dict as first not str.")
 
 
 
