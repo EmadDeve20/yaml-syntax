@@ -109,7 +109,7 @@ class YamlSyntax:
             raise EmptyFileError("file is empty!")
 
         if isinstance(loaded_yaml, str):
-            raise NotSerializable("yaml file must make dict as first not str.")
+            raise NotSerializable("yaml file content is not serializable")
 
 
 
