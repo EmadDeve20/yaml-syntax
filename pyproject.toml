@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "yaml-syntax"
-version = "0.0.5"
+version = "0.0.6"
 license = "GPL-3.0-or-later"
 authors = [
     {name = "EmadDeve20", email = "emaddeve20@gmail.com"},
