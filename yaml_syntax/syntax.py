@@ -2,6 +2,7 @@ import yaml
 import sys
 
 from yaml.scanner import ScannerError
+from yaml.parser import ParserError
 
 from pydantic import BaseModel, ValidationError
 
@@ -53,6 +54,8 @@ class YamlSyntax:
         try:
             loaded_yaml = yaml.safe_load(yaml_text)
         except ScannerError:
+            raise YamlFormatFileError("are you sure this is an yaml file? this is not yaml file.")
+        except ParserError:
             raise YamlFormatFileError("are you sure this is an yaml file? this is not yaml file.")
 
 
