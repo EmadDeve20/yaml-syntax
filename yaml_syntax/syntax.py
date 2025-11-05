@@ -5,7 +5,7 @@ from yaml.scanner import ScannerError
 
 from pydantic import BaseModel, ValidationError
 
-from .exceptions import (
+from yaml_syntax.exceptions import (
     YamlFormatFileError,
     EmptyFileError,
     SyntaxValidationError,
@@ -53,7 +53,7 @@ class YamlSyntax:
         try:
             loaded_yaml = yaml.safe_load(yaml_text)
         except ScannerError:
-            raise YamlFormatFileError("are you sure this is an yaml file?")
+            raise YamlFormatFileError("are you sure this is an yaml file? this is not yaml file.")
         except Exception as e:
             raise e
 
@@ -89,8 +89,7 @@ class YamlSyntax:
                 sys.exit(1)
             else:
                 raise SyntaxValidationError(self.yaml_syntax_error_handler(validation_error))
-        except Exception as ex:
-            raise ex
+
 
 
     def __check_loaded_yaml(self, loaded_yaml):
