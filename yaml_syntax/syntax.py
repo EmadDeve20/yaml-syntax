@@ -54,8 +54,7 @@ class YamlSyntax:
             loaded_yaml = yaml.safe_load(yaml_text)
         except ScannerError:
             raise YamlFormatFileError("are you sure this is an yaml file? this is not yaml file.")
-        except Exception as e:
-            raise e
+
 
         self.__check_loaded_yaml(loaded_yaml=loaded_yaml)
 
